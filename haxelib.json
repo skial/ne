@@ -1,0 +1,14 @@
+{
+  "name": "ne",
+  "license": "MIT",
+  "classPath": "src",
+  "tags": ["uhu", "uhx", "mo", "ne", "html", "parser", "javascript"],
+  "description": "A wrapper library around Mo's Html parser, providing a JavaScript compatible API.",
+  "contributors": ["skial"],
+  "releasenote": "Initial Release",
+  "version": "0.0.1-alpha",
+  "url": "https://github.com/skial/ne",
+  "dependencies": {
+	"mo": ""
+  }
+}
