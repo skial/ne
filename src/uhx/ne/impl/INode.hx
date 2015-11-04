@@ -1,0 +1,39 @@
+package uhx.ne.impl;
+
+/**
+ * @author Skial Bainn
+ */
+interface INode {
+	public var baseURI(get, never):String;
+	public var childNodes(get, never):NodeList;
+	public var firstChild(get, never):Node;
+	public var lastChild(get, never):Node;
+	public var nextSibling(get, never):Node;
+	public var nodeName(get, never):String;
+	public var nodeType(get, never):Int;
+	public var nodeValue(get, never):String;
+	public var ownerDocument(get, never):Document;
+	public var parentNode(get, never):Node;
+	public var parentElement(get, never):Element;
+	public var previousSibling(get, never):Node;
+	public var textContent(get, set):String;
+	public function appendChild():Void;
+	public function cloneNode():Void;
+	public function hasChildNodes():Bool;
+	public function insertBefore():Void;
+	public function removeChild():Void;
+	private function get_baseURI():String;
+	private function get_childNodes():NodeList;
+	private function get_firstChild():Node;
+	private function get_lastChild():Node;
+	private function get_nextSibling():Node;
+	private function get_nodeName():String;
+	private function get_nodeType():Int;
+	private function get_nodeValue():String;
+	private function get_ownerDocument():Document;
+	private function get_parentNode():Node;
+	private function get_parentElement():Element;
+	private function get_previousSibling():Node;
+	private function get_textContent():String;
+	private function set_textContent(v:String):String;
+}
