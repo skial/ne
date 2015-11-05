@@ -74,7 +74,7 @@ class InstructionNode implements INode {
 	private function get_nodeName():String {
 		if (nodeName == null) nodeName = switch(nodeType) {
 			case Node.COMMENT_NODE: '#comment';
-			case _: self.tokens[0];
+			case _: [for (token in self.tokens) if (token.trim() != '') token][0];
 		}
 		
 		return nodeName;
@@ -98,7 +98,7 @@ class InstructionNode implements INode {
 	private function get_nodeValue():String {
 		return switch (nodeType) {
 			case Node.COMMENT_NODE: self.tokens.slice(1, self.tokens.length-1).join('').trim();
-			case _: self.tokens.join('');
+			case _: self.tokens.join('').trim();
 		}
 	}
 	
