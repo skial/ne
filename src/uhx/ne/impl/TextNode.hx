@@ -21,8 +21,8 @@ class TextNode implements INode {
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
 	public var nodeName(get, never):String;
-	public var nodeType(get, never):Int;
-	public var nodeValue(get, never):String;
+	public var nodeType(get, never):Null<Int>;
+	public var nodeValue(get, never):Null<String>;
 	public var ownerDocument(get, never):Document;
 	public var parentNode(get, never):Node;
 	public var parentElement(get, never):Element;

@@ -3,6 +3,8 @@ package uhx.ne.impl;
 import uhx.lexer.Html;
 import uhx.ne.NodeList;
 
+using StringTools;
+
 /**
  * ...
  * @author Skial Bainn
@@ -20,8 +22,8 @@ class InstructionNode implements INode {
 	public var firstChild(get, never):Node;
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
-	public var nodeName(get, never):String;
-	public var nodeType(get, never):Int;
+	@:isVar public var nodeName(get, null):Null<String>;
+	@:isVar public var nodeType(get, null):Null<Int>;
 	public var nodeValue(get, never):String;
 	public var ownerDocument(get, never):Document;
 	public var parentNode(get, never):Node;
@@ -70,15 +72,34 @@ class InstructionNode implements INode {
 	}
 	
 	private function get_nodeName():String {
-		return '#comment';
+		if (nodeName == null) nodeName = switch(nodeType) {
+			case Node.COMMENT_NODE: '#comment';
+			case _: self.tokens[0];
+		}
+		
+		return nodeName;
 	}
 	
 	private function get_nodeType():Int {
-		return 7;
+		if (nodeType == null) {
+			nodeType = determineNodeType();
+		}
+		
+		return nodeType;
+	}
+	
+	private function determineNodeType():Int {
+		return switch (self.tokens[0]) {
+			case '--': Node.COMMENT_NODE;
+			case _: Node.PROCESSING_INSTRUCTION_NODE;
+		}
 	}
 	
 	private function get_nodeValue():String {
-		return self.tokens.join(' ');
+		return switch (nodeType) {
+			case Node.COMMENT_NODE: self.tokens.slice(1, self.tokens.length-1).join('').trim();
+			case _: self.tokens.join('');
+		}
 	}
 	
 	private function get_ownerDocument():Document {

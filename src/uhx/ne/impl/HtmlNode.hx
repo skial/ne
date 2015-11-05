@@ -13,7 +13,6 @@ class HtmlNode {
 	private var self:HtmlRef;
 	
 	public inline function new(v) {
-		trace( v );
 		self = v;
 	}
 	

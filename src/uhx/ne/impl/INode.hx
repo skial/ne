@@ -9,8 +9,8 @@ interface INode {
 	public var firstChild(get, never):Node;
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
-	public var nodeName(get, never):String;
-	public var nodeType(get, never):Int;
+	public var nodeName(get, never):Null<String>;
+	public var nodeType(get, never):Null<Int>;
 	public var nodeValue(get, never):String;
 	public var ownerDocument(get, never):Document;
 	public var parentNode(get, never):Node;
