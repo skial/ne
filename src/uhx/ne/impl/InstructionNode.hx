@@ -72,33 +72,25 @@ class InstructionNode implements INode {
 	}
 	
 	private function get_nodeName():String {
-		if (nodeName == null) nodeName = switch(nodeType) {
-			case Node.COMMENT_NODE: '#comment';
-			case _: [for (token in self.tokens) if (token.trim() != '') token][0];
-		}
+		if (nodeName == null) nodeName = '#comment';
 		
 		return nodeName;
 	}
 	
 	private function get_nodeType():Int {
 		if (nodeType == null) {
-			nodeType = determineNodeType();
+			nodeType = Node.COMMENT_NODE;
+			
 		}
 		
 		return nodeType;
 	}
 	
-	private function determineNodeType():Int {
-		return switch (self.tokens[0]) {
-			case '--': Node.COMMENT_NODE;
-			case _: Node.PROCESSING_INSTRUCTION_NODE;
-		}
-	}
-	
 	private function get_nodeValue():String {
-		return switch (nodeType) {
-			case Node.COMMENT_NODE: self.tokens.slice(1, self.tokens.length-1).join('').trim();
-			case _: self.tokens.join('').trim();
+		return if (self.isComment) {
+			self.tokens.slice(1, self.tokens.length - 1).join('');
+		} else {
+			'?' + self.tokens.join('') + '?';
 		}
 	}
 	
