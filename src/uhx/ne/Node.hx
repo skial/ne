@@ -11,7 +11,7 @@ import uhx.ne.impl.InstructionNode;
  * ...
  * @author Skial Bainn
  */
-@:forward abstract Node(INode) from INode to INode {
+@:forward abstract Node(INode<Ref<String>>) from INode<Ref<String>> to INode<Ref<String>> {
 	
 	public static inline var ELEMENT_NODE:Int = 1;
 	public static inline var TEXT_NODE:Int = 3;
@@ -32,4 +32,8 @@ import uhx.ne.impl.InstructionNode;
 	@:from @:noCompletion public static inline function fromRef(v:Ref<String>) return new Node( cast new TextNode( v ) );
 	@:from @:noCompletion public static inline function fromHtmlRef(v:HtmlRef) return new Node( cast new HtmlNode( v ) );
 	@:from @:noCompletion public static inline function fromInstructionRef(v:InstructionRef) return new Node( cast new InstructionNode( v ) );
+	
+	@:to @:noCompletion public inline function toToken():Token<HtmlKeywords> {
+		return this.toToken();
+	}
 }
