@@ -42,8 +42,8 @@ class HtmlNode implements INode<HtmlRef> {
 		
 	}
 	
-	public function hasChildNodes():Bool {
-		return false;
+	public inline function hasChildNodes():Bool {
+		return self.tokens.length > 0;
 	}
 	
 	public function insertBefore() {
