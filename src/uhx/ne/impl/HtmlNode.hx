@@ -8,9 +8,13 @@ import uhx.ne.NodeList;
  * ...
  * @author Skial Bainn
  */
-class HtmlNode {
+class HtmlNode implements INode<HtmlRef> {
 	
-	private var self:HtmlRef;
+	@:noCompletion public var self:HtmlRef;
+	
+	@:noCompletion public inline function toToken():Token<HtmlKeywords> {
+		return Keyword(Tag(self));
+	}
 	
 	public inline function new(v) {
 		self = v;
@@ -21,8 +25,8 @@ class HtmlNode {
 	public var firstChild(get, never):Node;
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
-	public var nodeName(get, never):String;
-	public var nodeType(get, never):Int;
+	public var nodeName(get, never):Null<String>;
+	public var nodeType(get, never):Null<Int>;
 	public var nodeValue(get, never):String;
 	public var ownerDocument(get, never):Document;
 	public var parentNode(get, never):Node;
@@ -38,8 +42,8 @@ class HtmlNode {
 		
 	}
 	
-	public function hasChildNodes() {
-		
+	public function hasChildNodes():Bool {
+		return false;
 	}
 	
 	public function insertBefore() {
@@ -54,11 +58,11 @@ class HtmlNode {
 		return '';
 	}
 	
-	private function get_childNodes():NodeList {
-		return self.tokens;
+	private inline function get_childNodes():NodeList {
+		return NodeList.fromTokens( self.tokens );
 	}
 	
-	private function get_firstChild():Node {
+	private inline function get_firstChild():Node {
 		return self.tokens[0];
 	}
 	
@@ -74,11 +78,11 @@ class HtmlNode {
 		return self.name;
 	}
 	
-	private function get_nodeType():Int {
-		return 1;
+	private inline function get_nodeType():Int {
+		return Node.ELEMENT_NODE;
 	}
 	
-	private function get_nodeValue():String {
+	private inline function get_nodeValue():String {
 		return null;
 	}
 	

@@ -1,9 +1,16 @@
 package uhx.ne.impl;
 
+import uhx.mo.Token;
+import uhx.lexer.Html;
+
 /**
  * @author Skial Bainn
  */
-interface INode {
+interface INode<T> {
+	
+	@:noCompletion public var self:T;
+	@:noCompletion public function toToken():Token<HtmlKeywords>;
+	
 	public var baseURI(get, never):String;
 	public var childNodes(get, never):NodeList;
 	public var firstChild(get, never):Node;

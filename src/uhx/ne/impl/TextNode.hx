@@ -1,5 +1,6 @@
 package uhx.ne.impl;
 
+import uhx.mo.Token;
 import uhx.lexer.Html;
 import uhx.ne.NodeList;
 
@@ -7,9 +8,13 @@ import uhx.ne.NodeList;
  * ...
  * @author Skial Bainn
  */
-class TextNode implements INode {
+class TextNode implements INode<Ref<String>> {
 	
-	private var self:Ref<String>;
+	@:noCompletion public var self:Ref<String>;
+	
+	@:noCompletion public inline function toToken():Token<HtmlKeywords> {
+		return Keyword(Text(self));
+	}
 	
 	public inline function new(v) {
 		self = v;
@@ -53,15 +58,15 @@ class TextNode implements INode {
 		return '';
 	}
 	
-	private function get_childNodes():NodeList {
+	private inline function get_childNodes():NodeList {
 		return [];
 	}
 	
-	private function get_firstChild():Node {
+	private inline function get_firstChild():Node {
 		return null;
 	}
 	
-	private function get_lastChild():Node {
+	private inline function get_lastChild():Node {
 		return null;
 	}
 	
@@ -69,15 +74,15 @@ class TextNode implements INode {
 		return this;
 	}
 	
-	private function get_nodeName():String {
+	private inline function get_nodeName():String {
 		return '#text';
 	}
 	
-	private function get_nodeType():Int {
-		return 3;
+	private inline function get_nodeType():Int {
+		return Node.TEXT_NODE;
 	}
 	
-	private function get_nodeValue():String {
+	private inline function get_nodeValue():String {
 		return self.tokens;
 	}
 	
@@ -97,8 +102,8 @@ class TextNode implements INode {
 		return self;
 	}
 	
-	private function get_textContent():String {
-		return nodeValue;
+	private inline function get_textContent():String {
+		return self.tokens;
 	}
 	
 	private function set_textContent(v:String):String {

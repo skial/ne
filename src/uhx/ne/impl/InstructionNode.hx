@@ -1,5 +1,6 @@
 package uhx.ne.impl;
 
+import uhx.mo.Token;
 import uhx.lexer.Html;
 import uhx.ne.NodeList;
 
@@ -9,9 +10,13 @@ using StringTools;
  * ...
  * @author Skial Bainn
  */
-class InstructionNode implements INode {
+class InstructionNode implements INode<InstructionRef> {
 	
-	private var self:InstructionRef;
+	@:noCompletion public var self:InstructionRef;
+	
+	@:noCompletion public inline function toToken():Token<HtmlKeywords> {
+		return Keyword(Instruction(self));
+	}
 	
 	public inline function new(v) {
 		self = v;
@@ -22,8 +27,8 @@ class InstructionNode implements INode {
 	public var firstChild(get, never):Node;
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
-	@:isVar public var nodeName(get, null):Null<String>;
-	@:isVar public var nodeType(get, null):Null<Int>;
+	public var nodeName(get, null):Null<String>;
+	public var nodeType(get, null):Null<Int>;
 	public var nodeValue(get, never):String;
 	public var ownerDocument(get, never):Document;
 	public var parentNode(get, never):Node;
@@ -55,15 +60,15 @@ class InstructionNode implements INode {
 		return '';
 	}
 	
-	private function get_childNodes():NodeList {
+	private inline function get_childNodes():NodeList {
 		return [];
 	}
 	
-	private function get_firstChild():Node {
+	private inline function get_firstChild():Node {
 		return null;
 	}
 	
-	private function get_lastChild():Node {
+	private inline function get_lastChild():Node {
 		return null;
 	}
 	
@@ -71,19 +76,12 @@ class InstructionNode implements INode {
 		return self;
 	}
 	
-	private function get_nodeName():String {
-		if (nodeName == null) nodeName = '#comment';
-		
-		return nodeName;
+	private inline function get_nodeName():String {
+		return '#comment';
 	}
 	
-	private function get_nodeType():Int {
-		if (nodeType == null) {
-			nodeType = Node.COMMENT_NODE;
-			
-		}
-		
-		return nodeType;
+	private inline function get_nodeType():Int {
+		return Node.COMMENT_NODE;
 	}
 	
 	private function get_nodeValue():String {
