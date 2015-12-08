@@ -3,6 +3,8 @@ package uhx.ne.impl;
 import uhx.mo.Token;
 import uhx.lexer.Html;
 import uhx.ne.NodeList;
+import uhx.ne.html.Element;
+import uhx.ne.html.Document;
 
 /**
  * ...
