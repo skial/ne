@@ -1,5 +1,7 @@
 package uhx.ne;
 
+import uhx.ne.html.HtmlDocument;
+
 /**
  * ...
  * @author Skial Bainn
@@ -7,7 +9,7 @@ package uhx.ne;
 class Browser {
 
 	public static var console:Dynamic;
-	public static var document:Dynamic;
+	public static var document(default, null):HtmlDocument;
 	public static var location:Dynamic;
 	public static var navigator:Dynamic;
 	public static var supported:Dynamic;
@@ -27,6 +29,12 @@ class Browser {
 	
 	public static function getSessionStorage() {
 		
+	}
+	
+	// Internal
+	
+	@:noCompletion public static function __init__() {
+		//document = uhx.ne.macro.Html.toTokens( "<html><head></head><body></body></html>" );
 	}
 	
 }
