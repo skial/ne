@@ -18,7 +18,7 @@ import uhx.select.html.Impl;
 	}
 	
 	public inline function querySelector(selectors:String):Element {
-		return cast uhx.select.html.Document.querySelectorAll(this.toToken(), selectors)[0];
+		return querySelectorAll(selectors)[0];
 	}
 	
 	@:access(uhx.select.html.Impl) public inline function querySelectorAll(selectors:String):NodeList {
