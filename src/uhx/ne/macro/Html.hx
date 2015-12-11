@@ -1,10 +1,11 @@
 package uhx.ne.macro;
 
+import uhx.mo.Token;
 import byte.ByteData;
-import haxe.macro.Context;
+import uhx.lexer.Html;
 import haxe.macro.Expr;
+import haxe.macro.Context;
 import haxe.macro.Printer;
-import haxe.Serializer;
 import uhx.parser.Html as HP;
 
 /**
@@ -15,17 +16,98 @@ class Html {
 	
 	private static var htmlParser:HP = new HP();
 
-	public static macro function toTokens(html:String):ExprOf<Node> {
+	public static macro function toTokens(html:String):ExprOf<Token<HtmlKeywords>> {
 		var tokens = htmlParser.toTokens( ByteData.ofString( html ), 'uhx.ne.macro.Html.toTokens()' );
+		var results = [for (token in tokens) toExpr( token )];
 		
-		//return macro $v{ tokens[0] };
-		//return Context.makeExpr( tokens[0], Context.currentPos() );
-		var str = Serializer.run( tokens[0] );
-		trace( str );
-		var expr = Context.eval( macro haxe.Unserializer.run( $v{str} ) );
-		trace( new Printer().printExpr( expr ) );
-		//return Context.parse( '' + tokens[0] + ';', Context.currentPos() );
-		return null;
+		trace( new Printer().printExpr( results[0] ) );
+		
+		return macro @:mergeBlock {
+			var token = $e { results[0] };
+			uhx.ne.Browser.fixLineage( token );
+			token;
+		}
 	}
+	
+	public static macro function toNode(html:String):ExprOf<uhx.ne.Node> {
+		var tokens = htmlParser.toTokens( ByteData.ofString( html ), 'uhx.ne.macro.Html.toTokens()' );
+		var results = [for (token in tokens) toExpr( token )];
+		
+		trace( new Printer().printExpr( results[0] ) );
+		
+		var unwrapped = switch (results[0]) {
+			case macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( $ref )):
+				trace( 'unwrapping' );
+				macro new uhx.ne.Node( cast new uhx.ne.impl.HtmlNode( $ref ) );
+				
+			case _:
+				null;
+				
+		}
+		
+		return macro @:mergeBlock {
+			var token = $e { unwrapped };
+			uhx.ne.Browser.fixLineage( token.toToken() );
+			token;
+		}
+	}
+	
+	private static var cache:Map<String, Expr> = new Map();
+	
+	#if macro
+	private static function toExpr(token:Token<HtmlKeywords>):Expr {
+		var result = null;
+		
+		switch (token) {
+			case Keyword(Tag( { name:n, complete:c, selfClosing:s, categories:cs, attributes:at, tokens:ts, parent:p } )):
+				var sig = Context.signature( token );
+				
+				if (!cache.exists( sig )) {
+					var values = [for (k in at.keys()) macro $v { k } => $v { at.get(k) } ];
+					var map = values.length > 0 ? macro [$a{ values }] : macro new haxe.ds.StringMap<String>();
+					var tokens = [for (t in ts) toExpr( t )];
+					var cats = [for (c in cs) macro $v { c } ];
+					
+					result = macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( 
+						new uhx.lexer.Html.HtmlRef($v{ n }, $map, $a{ cats }, $a{tokens}, @:parent null, $v{c}, $v{s}) 
+					));
+					
+					cache.set( sig, result );
+					
+				} else {
+					result = cache.get( sig );
+					
+				}
+				
+			case Keyword(Text( { tokens:t, parent:p } )):
+				
+			case Keyword(Instruction( { tokens:vs, parent:p, isComment:c } )):
+				
+			case _:
+				
+		}
+		
+		return result;
+	}
+	
+	private static function setParent(token:Token<HtmlKeywords>, expr:Expr):Expr {
+		switch (token) {
+			case Keyword(Tag( { parent:p } )):
+				
+				switch (expr) {
+					case macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( new uhx.lexer.Html.HtmlRef($a{args}) )):
+						args[4].expr = (macro function() return $e { cache.get( Context.signature(token) ) }).expr;
+						
+					case _:
+						
+				}
+				
+			case _:
+				
+		}
+		
+		return expr;
+	}
+	#end
 	
 }

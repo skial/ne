@@ -1,5 +1,7 @@
 package uhx.ne;
 
+import uhx.mo.Token;
+import uhx.lexer.Html;
 import uhx.ne.html.HtmlDocument;
 
 /**
@@ -34,7 +36,27 @@ class Browser {
 	// Internal
 	
 	@:noCompletion public static function __init__() {
-		//document = uhx.ne.macro.Html.toTokens( "<html><head></head><body></body></html>" );
+		document = uhx.ne.macro.Html.toNode( "<html><head></head><body></body></html>" );
+	}
+	
+	private static var parent:Token<HtmlKeywords> = null;
+	
+	@:noCompletion public static function fixLineage(token:Token<HtmlKeywords>):Void {
+		switch (token) {
+			case Keyword(Tag(ref)):
+				ref.parent = function() return parent;
+				
+				var prevParent = parent;
+				parent = token;
+				
+				for (token in ref.tokens) fixLineage( token );
+				
+				parent = prevParent;
+				prevParent = null;
+				
+			case _:
+				
+		}
 	}
 	
 }
