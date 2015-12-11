@@ -52,32 +52,20 @@ class Html {
 		}
 	}
 	
-	private static var cache:Map<String, Expr> = new Map();
-	
 	#if macro
 	private static function toExpr(token:Token<HtmlKeywords>):Expr {
 		var result = null;
 		
 		switch (token) {
 			case Keyword(Tag( { name:n, complete:c, selfClosing:s, categories:cs, attributes:at, tokens:ts, parent:p } )):
-				var sig = Context.signature( token );
+				var values = [for (k in at.keys()) macro $v { k } => $v { at.get(k) } ];
+				var map = values.length > 0 ? macro [$a{ values }] : macro new haxe.ds.StringMap<String>();
+				var tokens = [for (t in ts) toExpr( t )];
+				var cats = [for (c in cs) macro $v { c } ];
 				
-				if (!cache.exists( sig )) {
-					var values = [for (k in at.keys()) macro $v { k } => $v { at.get(k) } ];
-					var map = values.length > 0 ? macro [$a{ values }] : macro new haxe.ds.StringMap<String>();
-					var tokens = [for (t in ts) toExpr( t )];
-					var cats = [for (c in cs) macro $v { c } ];
-					
-					result = macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( 
-						new uhx.lexer.Html.HtmlRef($v{ n }, $map, $a{ cats }, $a{tokens}, @:parent null, $v{c}, $v{s}) 
-					));
-					
-					cache.set( sig, result );
-					
-				} else {
-					result = cache.get( sig );
-					
-				}
+				result = macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( 
+					new uhx.lexer.Html.HtmlRef($v{ n }, $map, $a{ cats }, $a{tokens}, @:parent null, $v{c}, $v{s}) 
+				));
 				
 			case Keyword(Text( { tokens:t, parent:p } )):
 				
@@ -88,25 +76,6 @@ class Html {
 		}
 		
 		return result;
-	}
-	
-	private static function setParent(token:Token<HtmlKeywords>, expr:Expr):Expr {
-		switch (token) {
-			case Keyword(Tag( { parent:p } )):
-				
-				switch (expr) {
-					case macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( new uhx.lexer.Html.HtmlRef($a{args}) )):
-						args[4].expr = (macro function() return $e { cache.get( Context.signature(token) ) }).expr;
-						
-					case _:
-						
-				}
-				
-			case _:
-				
-		}
-		
-		return expr;
 	}
 	#end
 	
