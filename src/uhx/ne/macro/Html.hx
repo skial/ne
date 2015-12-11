@@ -20,8 +20,6 @@ class Html {
 		var tokens = htmlParser.toTokens( ByteData.ofString( html ), 'uhx.ne.macro.Html.toTokens()' );
 		var results = [for (token in tokens) toExpr( token )];
 		
-		trace( new Printer().printExpr( results[0] ) );
-		
 		return macro @:mergeBlock {
 			var token = $e { results[0] };
 			uhx.ne.Browser.fixLineage( token );
@@ -32,12 +30,8 @@ class Html {
 	public static macro function toNode(html:String):ExprOf<uhx.ne.Node> {
 		var tokens = htmlParser.toTokens( ByteData.ofString( html ), 'uhx.ne.macro.Html.toTokens()' );
 		var results = [for (token in tokens) toExpr( token )];
-		
-		trace( new Printer().printExpr( results[0] ) );
-		
 		var unwrapped = switch (results[0]) {
 			case macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( $ref )):
-				trace( 'unwrapping' );
 				macro new uhx.ne.Node( cast new uhx.ne.impl.HtmlNode( $ref ) );
 				
 			case _:
@@ -53,6 +47,10 @@ class Html {
 	}
 	
 	#if macro
+	/**
+	 * Takes a single `Token<HtmlKeywords>` and turns it into an
+	 * expression, removing any runtime parsing.
+	 */
 	private static function toExpr(token:Token<HtmlKeywords>):Expr {
 		var result = null;
 		

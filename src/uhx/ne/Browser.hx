@@ -41,6 +41,9 @@ class Browser {
 	
 	private static var parent:Token<HtmlKeywords> = null;
 	
+	/**
+	 * Setup the parent field for each token, which was created at compile time.
+	 */
 	@:noCompletion public static function fixLineage(token:Token<HtmlKeywords>):Void {
 		switch (token) {
 			case Keyword(Tag(ref)):
