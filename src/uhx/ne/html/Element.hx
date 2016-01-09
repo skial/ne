@@ -1,5 +1,8 @@
 package uhx.ne.html;
 
+import uhx.ne.Node;
+import uhx.ne.html.DOMElement;
+
 /**
  * ...
  * @author Skial Bainn

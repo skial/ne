@@ -36,7 +36,7 @@ class Browser {
 	// Internal
 	
 	@:noCompletion public static function __init__() {
-		document = uhx.ne.macro.Html.toNode( "<html><head></head><body></body></html>" );
+		document = uhx.ne.macro.Helper.toNode( "<html><head></head><body></body></html>" );
 	}
 	
 	private static var parent:Token<HtmlKeywords> = null;
