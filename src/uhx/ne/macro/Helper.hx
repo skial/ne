@@ -12,7 +12,7 @@ import uhx.parser.Html as HP;
  * ...
  * @author Skial Bainn
  */
-class Html {
+class Helper {
 	
 	private static var htmlParser:HP = new HP();
 
