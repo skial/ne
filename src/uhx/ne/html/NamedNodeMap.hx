@@ -82,4 +82,10 @@ abstract NamedNodeMap(StringMap<String>) from StringMap<String> to StringMap<Str
 		return arg;
 	}
 	
+	private inline function get_length():Int {
+		var count = 0;
+		for (k in this.keys()) count++;
+		return count;
+	}
+	
 }
