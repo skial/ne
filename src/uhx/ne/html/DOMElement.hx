@@ -114,7 +114,7 @@ import uhx.lexer.Html.HtmlKeywords;
 		switch ((this:Token<HtmlKeywords>)) {
 			case Keyword(Tag(r)):
 				var css = Impl.parse( selectors );
-				if (css != null) results = Impl.process( this.toToken(), css, this.toToken() );
+				if (css != null) results = new Impl().process( this.toToken(), css, this.toToken() );
 				
 			case _:
 				

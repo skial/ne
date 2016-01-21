@@ -20,7 +20,7 @@ class TokenList implements INodeList<Tokens> {
 	}
 	
 	public inline function get(i:Int):Node {
-		return Node.fromToken( self[i] );
+		return self[i] != null ? Node.fromToken( self[i] ) : null;
 	}
 	
 	public inline function set(i:Int, v:Node):Node {

@@ -105,7 +105,10 @@ class HtmlNode implements INode<HtmlRef> {
 	}
 	
 	private function get_textContent():String {
-		return [for (t in self.tokens) if (Node.fromToken(t).nodeType != 7) Node.fromToken(t).textContent].join('');
+		return [for (t in self.tokens) {
+			if (t != null && (t:Node).nodeType != Node.PROCESSING_INSTRUCTION_NODE) (t:Node).textContent;
+			
+		}].join('');
 	}
 	
 	private function set_textContent(v:String):String {
