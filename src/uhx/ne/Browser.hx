@@ -2,7 +2,11 @@ package uhx.ne;
 
 import uhx.mo.Token;
 import uhx.lexer.Html;
-import uhx.ne.html.HtmlDocument;
+import uhx.ne.html.Window;
+import uhx.ne.html.Console;
+import uhx.ne.html.Location;
+import uhx.ne.html.Navigator;
+import uhx.ne.html.HTMLDocument;
 
 /**
  * ...
@@ -10,12 +14,12 @@ import uhx.ne.html.HtmlDocument;
  */
 class Browser {
 
-	public static var console:Dynamic;
-	public static var document(default, null):HtmlDocument;
-	public static var location:Dynamic;
-	public static var navigator:Dynamic;
-	public static var supported:Dynamic;
-	public static var window:Dynamic;
+	public static var console:Console = new Console();
+	public static var document(default, null):HTMLDocument;
+	public static var location:Location = new Location();
+	public static var navigator:Navigator = new Navigator();
+	public static var supported:Bool = false;
+	public static var window:Window = new Window();
 	
 	public static function alert(value:Dynamic):Void {
 		
