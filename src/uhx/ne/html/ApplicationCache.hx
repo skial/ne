@@ -1,6 +1,6 @@
 package uhx.ne.html;
 
-import haxe.Constraints.Function;
+import haxe.Constraints.Function;	
 
 @:forward abstract ApplicationCache(EventTarget) from EventTarget to EventTarget {
 	
