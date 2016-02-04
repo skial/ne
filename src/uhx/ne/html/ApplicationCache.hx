@@ -1,5 +1,7 @@
 package uhx.ne.html;
 
+import haxe.Constraints.Function;
+
 @:forward abstract ApplicationCache(EventTarget) from EventTarget to EventTarget {
 	
 	public var oncached(get, set):Function;

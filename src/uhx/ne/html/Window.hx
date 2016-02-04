@@ -1,5 +1,7 @@
 package uhx.ne.html;
 
+import haxe.extern.Rest;
+import haxe.extern.EitherType;
 import uhx.ne.html.idb.Factory;
 import haxe.Constraints.Function;
 
