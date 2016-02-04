@@ -346,7 +346,7 @@ class CSSStyleDeclaration {
 	}
 
 	public function getPropertyCSSValue (property:String):CSSValue {
-		return '';
+		return null;
 	}
 	
 	public function getPropertyPriority (property:String):String {

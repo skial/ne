@@ -1,3 +1,8 @@
 package uhx.ne.html;
 
-typedef SessionType = js.html.SessionType;
+@:enum abstract SessionType(String) from String to String {
+	
+	var TEMPORARY = "temporary";
+	var PERSISTENT = "persistent";
+	
+}

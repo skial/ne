@@ -14,8 +14,8 @@ package uhx.ne.html;
 	public var noValidate(get, set):Bool;
 	public var target(get, set):String;
 	
-	public inline function new() {
-		
+	public inline function new(v) {
+		this = v;
 	}
 	
 	public function checkValidity():Bool {

@@ -6,7 +6,7 @@ class CSSStyleSheet extends StyleSheet {
 	public var ownerRule(default, never):CSSRule;
 	
 	public function new() {
-		
+		super();
 	}
 	
 	public function deleteRule (index:Int):Void {

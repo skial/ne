@@ -1,3 +1,10 @@
 package uhx.ne.html.idb;
 
-typedef CursorDirection = js.html.idb.CursorDirection;
+@:enum abstract CursorDirection(String) from String to String {
+	
+	var NEXT = "next";
+	var NEXTUNIQUE = "nextunique";
+	var PREV = "prev";
+	var PREVUNIQUE = "prevunique";
+	
+}

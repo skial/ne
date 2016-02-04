@@ -14,8 +14,8 @@ import haxe.Constraints.Function;
 	public var source(get, never):EitherType<ObjectStore, EitherType<Index, Cursor>>;
 	public var transaction(get, never):Transaction;
 	
-	public inline function new() {
-		
+	public inline function new(v) {
+		this = v;
 	}
 	
 	public function get_error():DOMError return null;
@@ -26,7 +26,7 @@ import haxe.Constraints.Function;
 	public function get_onsuccess():Function return null;
 	public function set_onsuccess(v:Function):Function return v;
 	
-	public function get_readState():RequestReadyState return null;
+	public function get_readyState():RequestReadyState return null;
 	
 	public function get_result():Dynamic return null;
 	

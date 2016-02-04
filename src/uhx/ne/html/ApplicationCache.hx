@@ -14,8 +14,8 @@ import haxe.Constraints.Function;
 	public var onupdateready(get, set):Function;
 	public var status(get, never):Int;
 	
-	public inline function new() {
-		
+	public inline function new(v) {
+		this = v;
 	}
 	
 	public function swapCache ():Void {
@@ -57,6 +57,6 @@ import haxe.Constraints.Function;
 	private function get_onupdateready():Function return null;
 	private function set_onupdateready(v:Function):Function return v;
 	
-	private function get_onstatus():Int return -1;
+	private function get_status():Int return -1;
 	
 }

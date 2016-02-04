@@ -7,8 +7,8 @@ import haxe.Constraints.Function;
 	public var onblocked(get, set):Function;
 	public var onupgradeneeded(get, set):Function;
 	
-	public inline function new() {
-		
+	public inline function new(v) {
+		this = v;
 	}
 	
 	private function get_onblocked():Function return null;

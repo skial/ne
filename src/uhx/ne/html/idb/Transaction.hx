@@ -14,8 +14,8 @@ import haxe.Constraints.Function;
 	public var oncomplete(get, set):Function;
 	public var onerror(get, set):Function;
 	
-	public inline function new() {
-		
+	public inline function new(v) {
+		this = v;
 	}
 	
 	public function abort ():Void {

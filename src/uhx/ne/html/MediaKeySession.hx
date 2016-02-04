@@ -11,7 +11,7 @@ class MediaKeySession {
 	public var sessionId(default, never):String;
 	
 	public function close ():Promise<Void> {
-		
+		return null;
 	}
 	
 	public function generateRequest (initDataType:String, initData:EitherType<ArrayBufferView, ArrayBuffer>):Promise<Void> {

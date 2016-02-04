@@ -1,7 +1,5 @@
 package uhx.ne.html;
 
-import haxe.extern.Rest;
-
 /**
  * ...
  * @author Skial Bainn
@@ -12,7 +10,7 @@ class Console {
 		
 	}
 	
-	public function assert (condition:Bool, data:Rest<Dynamic>):Void {
+	public function assert (condition:Bool, data:Array<Dynamic>):Void {
 		
 	}
 	
@@ -20,55 +18,55 @@ class Console {
 		
 	}
 	
-	public function count (data:Rest<Dynamic>):Void {
+	public function count (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function debug (data:Rest<Dynamic>):Void {
+	public function debug (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function dir (data:Rest<Dynamic>):Void {
+	public function dir (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function error (data:Rest<Dynamic>):Void {
+	public function error (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function exception (data:Rest<Dynamic>):Void {
+	public function exception (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function group (data:Rest<Dynamic>):Void {
+	public function group (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function groupCollapsed (data:Rest<Dynamic>):Void {
+	public function groupCollapsed (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function groupEnd (data:Rest<Dynamic>):Void {
+	public function groupEnd (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function info (data:Rest<Dynamic>):Void {
+	public function info (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function log (data:Rest<Dynamic>):Void {
+	public function log (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function profile (data:Rest<Dynamic>):Void {
+	public function profile (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function profileEnd (data:Rest<Dynamic>):Void {
+	public function profileEnd (data:Array<Dynamic>):Void {
 		
 	}
 	
-	public function table (data:Rest<Dynamic>):Void {
+	public function table (data:Array<Dynamic>):Void {
 		
 	}
 	
@@ -84,7 +82,7 @@ class Console {
 		
 	}
 	
-	public function warn (data:Rest<Dynamic>):Void {
+	public function warn (data:Array<Dynamic>):Void {
 		
 	}
 	

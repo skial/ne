@@ -141,6 +141,10 @@ class Window {
 	public var top(default, never):Window;
 	public var window(default, never):Window;
 	
+	public function new() {
+		
+	}
+	
 	public function alert (message:String):Void {
 		
 	}
@@ -294,7 +298,7 @@ class Window {
 		return -1;
 	}*/
 	
-	public function setInterval (handler:Function, ?timeout:Int, arguments:Rest<Dynamic>):Int {
+	public function setInterval (handler:Function, ?timeout:Int, arguments:Array<Dynamic>):Int {
 		return -1;
 	}
 	
@@ -306,7 +310,7 @@ class Window {
 		return -1;
 	}*/
 	
-	public function setTimeout (handler:Function, timeout:Int = 0, arguments:Rest<Dynamic>):Int {
+	public function setTimeout (handler:Function, timeout:Int = 0, arguments:Array<Dynamic>):Int {
 		return -1;
 	}
 	

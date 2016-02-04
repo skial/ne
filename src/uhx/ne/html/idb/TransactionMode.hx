@@ -1,3 +1,9 @@
 package uhx.ne.html.idb;
 
-typedef TransactionMode = js.html.idb.TransactionMode;
+@:enum abstract TransactionMode(String) from String to String {
+	
+	var READONLY = "readonly";
+	var READWRITE = "readwrite";
+	var VERSIONCHANGE = "versionchange";
+	
+}
