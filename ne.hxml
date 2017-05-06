@@ -1,0 +1,4 @@
+-lib mo
+-cp src
+-neko bin/ne.n
+-main Main
