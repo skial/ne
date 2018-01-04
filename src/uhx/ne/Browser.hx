@@ -1,7 +1,7 @@
 package uhx.ne;
 
 import uhx.mo.Token;
-import uhx.lexer.Html;
+import uhx.mo.html.Lexer;
 import uhx.ne.html.Window;
 import uhx.ne.html.Console;
 import uhx.ne.html.Location;

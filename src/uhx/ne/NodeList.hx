@@ -2,7 +2,7 @@ package uhx.ne;
 
 import uhx.ne.Node;
 import uhx.mo.Token;
-import uhx.lexer.Html;
+import uhx.mo.html.Lexer;
 import uhx.ne.impl.RefList;
 import uhx.ne.impl.TokenList;
 import uhx.ne.impl.INodeList;
@@ -58,7 +58,7 @@ private typedef Tokens = Array<Token<HtmlKeywords>>;
 	
 }*/
 
-@:forward abstract NodeList(INodeList<Array<Dynamic>>) from INodeList<Array<Dynamic>> to INodeList<Array<Dynamic>> {
+@:forward abstract NodeList<T>(INodeList<Array<T>>) from INodeList<Array<T>> to INodeList<Array<T>> {
 	
 	public inline function new(v) this = v;
 	
@@ -67,11 +67,11 @@ private typedef Tokens = Array<Token<HtmlKeywords>>;
 		return this.set( i, v );
 	}
 	
-	@:from public static inline function fromTokens(tokens:Array<Token<HtmlKeywords>>) {
+	@:from public static inline function fromTokens(tokens:Array<Token<HtmlKeywords>>):NodeList<Token<HtmlKeywords>> {
 		return new NodeList( new TokenList( tokens ) );
 	}
 	
-	@:from public static inline function fromNodes(nodes:Array<Node>) {
+	@:from public static inline function fromNodes(nodes:Array<Node>):NodeList<Node> {
 		return new NodeList( new RefList( nodes ) );
 	}
 	

@@ -1,8 +1,8 @@
 package uhx.ne.impl;
 
 import uhx.mo.Token;
-import uhx.lexer.Html;
 import uhx.ne.NodeList;
+import uhx.mo.html.Lexer;
 import uhx.ne.html.Element;
 import uhx.ne.html.Document;
 
@@ -23,7 +23,7 @@ class HtmlNode implements INode<HtmlRef> {
 	}
 	
 	public var baseURI(get, never):String;
-	public var childNodes(get, never):NodeList;
+	public var childNodes(get, never):NodeList<Token<HtmlKeywords>>;
 	public var firstChild(get, never):Node;
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
@@ -60,7 +60,7 @@ class HtmlNode implements INode<HtmlRef> {
 		return '';
 	}
 	
-	private inline function get_childNodes():NodeList {
+	private inline function get_childNodes():NodeList<Token<HtmlKeywords>> {
 		return NodeList.fromTokens( self.tokens );
 	}
 	

@@ -1,4 +1,20 @@
--lib mo
+-lib jwenn
+-lib mo-html
+
 -cp src
--neko bin/ne.n
+-cp tests
+
+-dce full
+
+#-debug
+
 -main Main
+
+--each
+
+-neko bin/ne.n
+
+--next
+
+-D nodejs
+-js bin/ne.js

@@ -2,7 +2,7 @@ package uhx.ne.impl;
 
 import uhx.ne.Node;
 import uhx.mo.Token;
-import uhx.lexer.Html;
+import uhx.mo.html.Lexer;
 
 /**
  * ...
@@ -43,6 +43,10 @@ class RefList implements INodeList<Array<Node>> {
 		}*/
 		
 		return result;
+	}
+
+	public inline function iterator():Iterator<Node> {
+		return self.iterator();
 	}
 	
 	private inline function get_length():Int return self.length;

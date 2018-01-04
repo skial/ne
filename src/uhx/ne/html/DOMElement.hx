@@ -3,10 +3,9 @@ package uhx.ne.html;
 import uhx.ne.Node;
 import uhx.mo.Token;
 import haxe.ds.Vector;
-import uhx.lexer.Html;
+import uhx.mo.html.Lexer;
 import haxe.ds.StringMap;
 import uhx.select.html.Impl;
-import uhx.lexer.Html.HtmlKeywords;
 
 /**
  * ...
@@ -108,13 +107,13 @@ import uhx.lexer.Html.HtmlKeywords;
 		return querySelectorAll(selectors)[0];
 	}
 	
-	@:access(uhx.select.html.Impl) public inline function querySelectorAll(selectors:String):NodeList {
-		var results = [];
+	@:access(uhx.select.html.Impl) public inline function querySelectorAll(selectors:String):NodeList<Token<HtmlKeywords>> {
+		var results:NodeList<Token<HtmlKeywords>> = [];
 		
 		switch ((this:Token<HtmlKeywords>)) {
 			case Keyword(Tag(r)):
 				var css = Impl.parse( selectors );
-				if (css != null) results = new Impl().process( this.toToken(), css, this.toToken() );
+				if (css != null) results = NodeList.fromTokens( new Impl().process( this.toToken(), css, this.toToken() ) );
 				
 			case _:
 				

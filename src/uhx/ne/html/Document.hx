@@ -4,7 +4,7 @@ import uhx.ne.Node;
 import uhx.ne.NodeList;
 
 import uhx.mo.Token;
-import uhx.lexer.Html;
+import uhx.mo.html.Lexer;
 import uhx.select.html.Impl;
 
 /**
@@ -21,13 +21,13 @@ import uhx.select.html.Impl;
 		return querySelectorAll(selectors)[0];
 	}
 	
-	@:access(uhx.select.html.Impl) public inline function querySelectorAll(selectors:String):NodeList {
-		var results = [];
+	@:access(uhx.select.html.Impl) public inline function querySelectorAll(selectors:String):NodeList<Token<HtmlKeywords>> {
+		var results:NodeList<Token<HtmlKeywords>> = [];
 		
 		switch ((this:Token<HtmlKeywords>)) {
 			case Keyword(Tag(r)):
 				var css = Impl.parse( selectors );
-				if (css != null) results = new Impl().process( this.toToken(), css, this.toToken() );
+				if (css != null) results = NodeList.fromTokens( new Impl().process( this.toToken(), css, this.toToken() ) );
 				
 			case _:
 				

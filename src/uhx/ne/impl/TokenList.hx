@@ -2,7 +2,7 @@ package uhx.ne.impl;
 
 import uhx.ne.Node;
 import uhx.mo.Token;
-import uhx.lexer.Html;
+import uhx.mo.html.Lexer;
 
 typedef Tokens = Array<Token<HtmlKeywords>>;
 
@@ -50,6 +50,14 @@ class TokenList implements INodeList<Tokens> {
 		}*/
 		
 		return result;
+	}
+
+	public inline function iterator():Iterator<Node> {
+		var i:Iterator<Token<HtmlKeywords>> = self.iterator();
+		return {
+			hasNext:i.hasNext,
+			next:function() return Node.fromToken(i.next())
+		}
 	}
 	
 	private function get_length():Int return self.length;

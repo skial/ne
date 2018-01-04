@@ -2,11 +2,11 @@ package uhx.ne.macro;
 
 import uhx.mo.Token;
 import byte.ByteData;
-import uhx.lexer.Html;
 import haxe.macro.Expr;
+import uhx.mo.html.Lexer;
 import haxe.macro.Context;
 import haxe.macro.Printer;
-import uhx.parser.Html as HP;
+import uhx.mo.html.Parser as HP;
 
 /**
  * ...
@@ -31,7 +31,7 @@ class Helper {
 		var tokens = htmlParser.toTokens( ByteData.ofString( html ), 'uhx.ne.macro.Html.toTokens()' );
 		var results = [for (token in tokens) toExpr( token )];
 		var unwrapped = switch (results[0]) {
-			case macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( $ref )):
+			case macro uhx.mo.Token.Keyword(uhx.mo.html.Lexer.HtmlKeywords.Tag( $ref )):
 				macro new uhx.ne.Node( cast new uhx.ne.impl.HtmlNode( $ref ) );
 				
 			case _:
@@ -61,8 +61,8 @@ class Helper {
 				var tokens = [for (t in ts) toExpr( t )];
 				var cats = [for (c in cs) macro $v { c } ];
 				
-				result = macro uhx.mo.Token.Keyword(uhx.lexer.Html.HtmlKeywords.Tag( 
-					new uhx.lexer.Html.HtmlRef($v{ n }, $map, $a{ cats }, $a{tokens}, @:parent null, $v{c}, $v{s}) 
+				result = macro uhx.mo.Token.Keyword(uhx.mo.html.Lexer.HtmlKeywords.Tag( 
+					new uhx.mo.html.Lexer.HtmlRef($v{ n }, $map, $a{ cats }, $a{tokens}, @:parent null, $v{c}, $v{s}) 
 				));
 				
 			case Keyword(Text( { tokens:t, parent:p } )):
