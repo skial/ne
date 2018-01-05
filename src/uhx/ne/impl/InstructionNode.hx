@@ -62,7 +62,7 @@ class InstructionNode implements INode<InstructionRef> {
 		return '';
 	}
 	
-	private inline function get_childNodes():NodeList/*<Token<HtmlKeywords>>*/ {
+	private inline function get_childNodes():NodeList {
 		return [];
 	}
 	

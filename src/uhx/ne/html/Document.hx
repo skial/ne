@@ -21,10 +21,10 @@ import uhx.select.html.Impl;
 		return querySelectorAll(selectors)[0];
 	}
 	
-	@:access(uhx.select.html.Impl) public inline function querySelectorAll(selectors:String):NodeList/*<Token<HtmlKeywords>>*/ {
-		var results:NodeList/*<Token<HtmlKeywords>>*/ = [];
+	@:access(uhx.select.html.Impl) public inline function querySelectorAll(selectors:String):NodeList {
+		var results:NodeList = [];
 		
-		switch (this.toToken()/*(this:Token<HtmlKeywords>)*/) {
+		switch (this.toToken()) {
 			case Keyword(Tag(r)):
 				var css = Impl.parse( selectors );
 				if (css != null) results = NodeList.fromTokens( new Impl().process( this.toToken(), css, this.toToken() ) );

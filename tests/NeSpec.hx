@@ -50,6 +50,8 @@ using StringTools;
 		Assert.equals( 'Hey', n.textContent );
 		Assert.equals( NeNode.ELEMENT_NODE, n.nodeType );
 		
+		trace( tink.Json.stringify( n ) );
+
 		#if (js && !nodejs)
 		var j = DOM( html );
 		

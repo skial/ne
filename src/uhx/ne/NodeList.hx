@@ -7,58 +7,7 @@ import uhx.ne.impl.RefList;
 import uhx.ne.impl.TokenList;
 import uhx.ne.impl.INodeList;
 
-private typedef Nodes = Array<Node>;
-private typedef Tokens = Array<Token<HtmlKeywords>>;
-
-/**
- * ...
- * @author Skial Bainn
- */
-/*@:forward abstract NodeList(Nodes) from Nodes to Nodes {
-	
-	public var length(get, never):Int;
-	
-	@:noCompletion public inline function new(v:Nodes) this = v;
-	
-	@:arrayAccess @:noCompletion public inline function get(i:Int):Node return this[i];
-	@:arrayAccess @:noCompletion public inline function set(i:Int, v:Node):Node {
-		this[i] = v;
-		return v;
-	}
-	
-	public function indexOf(x:Node, ?fromIndex:Int = 0):Int {
-		var result = -1;
-		
-		for (i in fromIndex...this.length) if (this[i].equals( x )) {
-			result = i;
-			break;
-		}
-		
-		return result;
-	}
-	
-	public function lastIndexOf(x:Node, ?fromIndex:Int):Int {
-		var result = -1;
-		var i = fromIndex == null ? this.length - 1 : fromIndex;
-		while (i >= 0) if (this[i].equals( x )) {
-			result = i;
-			break;
-		} else {
-			i--;
-		}
-		
-		return result;
-	}
-	
-	private function get_length():Int return this.length;
-	
-	@:from @:noCompletion public static inline function fromTokens(tokens:Tokens) {
-		return new NodeList( (tokens:Array<Node>) );
-	}
-	
-}*/
-
-@:forward abstract NodeList/*<T>*/(INodeList/*<Array<T>>*/) from INodeList/*<Array<T>>*/ to INodeList/*<Array<T>>*/ {
+@:forward abstract NodeList(INodeList) from INodeList to INodeList {
 	
 	public inline function new(v) this = v;
 	
@@ -67,11 +16,11 @@ private typedef Tokens = Array<Token<HtmlKeywords>>;
 		return this.set( i, v );
 	}
 	
-	@:from public static inline function fromTokens(tokens:Array<Token<HtmlKeywords>>):NodeList/*<Token<HtmlKeywords>>*/ {
+	@:from public static inline function fromTokens(tokens:Array<Token<HtmlKeywords>>):NodeList {
 		return new NodeList( new TokenList( tokens ) );
 	}
 	
-	@:from public static inline function fromNodes(nodes:Array<Node>):NodeList/*<Node>*/ {
+	@:from public static inline function fromNodes(nodes:Array<Node>):NodeList {
 		return new NodeList( new RefList( nodes ) );
 	}
 	

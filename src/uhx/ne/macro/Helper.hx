@@ -2,11 +2,14 @@ package uhx.ne.macro;
 
 import uhx.mo.Token;
 import byte.ByteData;
-import haxe.macro.Expr;
 import uhx.mo.html.Lexer;
+import uhx.mo.html.Parser as HP;
+
+#if (macro || eval)
+import haxe.macro.Expr;
 import haxe.macro.Context;
 import haxe.macro.Printer;
-import uhx.mo.html.Parser as HP;
+#end
 
 /**
  * ...
@@ -46,7 +49,7 @@ class Helper {
 		}
 	}
 	
-	#if macro
+	#if (macro || eval)
 	/**
 	 * Takes a single `Token<HtmlKeywords>` and turns it into an
 	 * expression, removing any runtime parsing.

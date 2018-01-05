@@ -60,7 +60,7 @@ class TextNode implements INode<Ref<String>> {
 		return '';
 	}
 	
-	private inline function get_childNodes():NodeList/*<Token<HtmlKeywords>>*/ {
+	private inline function get_childNodes():NodeList {
 		return [];
 	}
 	

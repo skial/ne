@@ -1,12 +1,19 @@
 -lib jwenn
 -lib mo-html
+-lib tink_core
+-lib tink_json
+-lib tink_macro
 
 -cp src
 -cp tests
 
--dce full
-
 #-debug
+
+-dce full
+-D js-es=6
+# Faster on node
+-D js-enums-as-objects
+-D analyzer-optimize
 
 -main Main
 
@@ -16,5 +23,6 @@
 
 --next
 
--D nodejs
+-lib hxnodejs
 -js bin/ne.js
+#uglifyjs -c -m -o bin/ne.min.js bin/ne.js

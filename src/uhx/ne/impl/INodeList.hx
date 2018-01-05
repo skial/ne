@@ -3,7 +3,7 @@ package uhx.ne.impl;
 /**
  * @author Skial Bainn
  */
-interface INodeList/*<T>*/ {
+interface INodeList {
 	
 	public var length(get, never):Int;
 	//@:noCompletion public var self:T;
