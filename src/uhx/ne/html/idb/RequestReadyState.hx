@@ -1,3 +1,3 @@
 package uhx.ne.html.idb;
 
-typedef RequestReadyState = js.html.idb.RequestReadyState;
+typedef RequestReadyState = {};//js.html.idb.RequestReadyState;

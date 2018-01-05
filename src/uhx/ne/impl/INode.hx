@@ -14,7 +14,7 @@ interface INode<T> {
 	@:noCompletion public function toToken():Token<HtmlKeywords>;
 	
 	public var baseURI(get, never):String;
-	public var childNodes(get, never):NodeList<Token<HtmlKeywords>>;
+	public var childNodes(get, never):NodeList/*<Token<HtmlKeywords>>*/;
 	public var firstChild(get, never):Node;
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
@@ -32,7 +32,7 @@ interface INode<T> {
 	public function insertBefore():Void;
 	public function removeChild():Void;
 	private function get_baseURI():String;
-	private function get_childNodes():NodeList<Token<HtmlKeywords>>;
+	private function get_childNodes():NodeList/*<Token<HtmlKeywords>>*/;
 	private function get_firstChild():Node;
 	private function get_lastChild():Node;
 	private function get_nextSibling():Node;

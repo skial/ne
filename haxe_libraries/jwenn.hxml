@@ -1,8 +1,7 @@
-# @install: lix --silent download "https://github.com/skial/jwenn/archive/9363c704b8ade4f9ae98dce892888b79f5aa9025.tar.gz" into jwenn/0.0.1-alpha/github/9363c704b8ade4f9ae98dce892888b79f5aa9025
+# @install: lix --silent download "https://github.com/skial/jwenn/archive/0f0066af1d7f4e57e425d73abd5fb3a45b351234.tar.gz" into jwenn/0.0.1-alpha/github/0f0066af1d7f4e57e425d73abd5fb3a45b351234
 -D jwenn=0.0.1-alpha
--cp ${HAXESHIM_LIBCACHE}/jwenn/0.0.1-alpha/github/9363c704b8ade4f9ae98dce892888b79f5aa9025/src
+-cp ${HAXESHIM_LIBCACHE}/jwenn/0.0.1-alpha/github/0f0066af1d7f4e57e425d73abd5fb3a45b351234/src
 
 -lib utest
 -lib mo-css
 -lib mo-html
-#-lib ne

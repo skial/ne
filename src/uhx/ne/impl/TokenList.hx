@@ -10,7 +10,7 @@ typedef Tokens = Array<Token<HtmlKeywords>>;
  * ...
  * @author Skial Bainn
  */
-class TokenList implements INodeList<Tokens> {
+class TokenList implements INodeList/*<Tokens>*/ {
 	
 	public var length(get, never):Int;
 	@:noCompletion public var self:Tokens;

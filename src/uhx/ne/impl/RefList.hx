@@ -8,7 +8,7 @@ import uhx.mo.html.Lexer;
  * ...
  * @author Skial Bainn
  */
-class RefList implements INodeList<Array<Node>> {
+class RefList implements INodeList/*<Array<Node>>*/ {
 	
 	public var length(get, never):Int;
 	@:noCompletion public var self:Array<Node>;

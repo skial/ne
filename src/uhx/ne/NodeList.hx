@@ -58,7 +58,7 @@ private typedef Tokens = Array<Token<HtmlKeywords>>;
 	
 }*/
 
-@:forward abstract NodeList<T>(INodeList<Array<T>>) from INodeList<Array<T>> to INodeList<Array<T>> {
+@:forward abstract NodeList/*<T>*/(INodeList/*<Array<T>>*/) from INodeList/*<Array<T>>*/ to INodeList/*<Array<T>>*/ {
 	
 	public inline function new(v) this = v;
 	
@@ -67,11 +67,11 @@ private typedef Tokens = Array<Token<HtmlKeywords>>;
 		return this.set( i, v );
 	}
 	
-	@:from public static inline function fromTokens(tokens:Array<Token<HtmlKeywords>>):NodeList<Token<HtmlKeywords>> {
+	@:from public static inline function fromTokens(tokens:Array<Token<HtmlKeywords>>):NodeList/*<Token<HtmlKeywords>>*/ {
 		return new NodeList( new TokenList( tokens ) );
 	}
 	
-	@:from public static inline function fromNodes(nodes:Array<Node>):NodeList<Node> {
+	@:from public static inline function fromNodes(nodes:Array<Node>):NodeList/*<Node>*/ {
 		return new NodeList( new RefList( nodes ) );
 	}
 	

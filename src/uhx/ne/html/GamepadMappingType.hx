@@ -1,3 +1,3 @@
 package uhx.ne.html;
 
-typedef GamepadMappingType = js.html.GamepadMappingType;
+typedef GamepadMappingType = {};//js.html.GamepadMappingType;

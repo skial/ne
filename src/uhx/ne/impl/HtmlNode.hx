@@ -23,7 +23,7 @@ class HtmlNode implements INode<HtmlRef> {
 	}
 	
 	public var baseURI(get, never):String;
-	public var childNodes(get, never):NodeList<Token<HtmlKeywords>>;
+	public var childNodes(get, never):NodeList/*<Token<HtmlKeywords>>*/;
 	public var firstChild(get, never):Node;
 	public var lastChild(get, never):Node;
 	public var nextSibling(get, never):Node;
@@ -60,7 +60,7 @@ class HtmlNode implements INode<HtmlRef> {
 		return '';
 	}
 	
-	private inline function get_childNodes():NodeList<Token<HtmlKeywords>> {
+	private inline function get_childNodes():NodeList/*<Token<HtmlKeywords>>*/ {
 		return NodeList.fromTokens( self.tokens );
 	}
 	
